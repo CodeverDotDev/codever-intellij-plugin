@@ -1,0 +1,48 @@
+<idea-plugin>
+    <id>dev.bookmarks.intellij.plugin</id>
+    <name>Save to Bookmarks.dev</name>
+    <version>1.0.0</version>
+    <vendor email="ama@codepedia.org" url="https://www.codepedia.org">CodepediaOrg</vendor>
+
+    <description><![CDATA[
+      Plugin to help saving code snippets on <a href="https://www.bookmarks.dev">www.bookmarks.dev</a>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <ul>
+        <li>1.0.0 - Initial release</li>
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <action
+                id="BookmarsDev.Save.Editor"
+                class="dev.bookmarks.intellij.plugin.SaveToBookmarksDevAction"
+                text="Save to Bookmarks.dev"
+                description="Save code snippet to Bookmarks.dev"
+                icon="SaveToBookmarksDevPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="BookmarsDev.Save.Console"
+                class="dev.bookmarks.intellij.plugin.SaveToBookmarksDevAction"
+                text="Save to Bookmarks.dev"
+                description="Save code snippet to Bookmarks.dev"
+                icon="SaveToBookmarksDevPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>
