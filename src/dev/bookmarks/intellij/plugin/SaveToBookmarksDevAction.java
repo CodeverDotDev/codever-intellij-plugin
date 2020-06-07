@@ -17,6 +17,20 @@ import java.net.URLEncoder;
 
 public class SaveToBookmarksDevAction extends AnAction {
 
+    /**
+     * Only make this action visible when text is selected.
+     *
+     *  The update method below is only called periodically so need
+     *  to be careful to check for selected text
+     *  https://jetbrains.org/intellij/sdk/docs/basics/action_system.html#overriding-the-anactionupdate-method
+     *
+     * @param e
+     */
+    @Override
+    public void update(AnActionEvent e) {
+        e.getPresentation().setEnabledAndVisible(isTextSelected(e));
+    }
+
     @Override
     public void actionPerformed(AnActionEvent e) {
         if (isTextSelected(e)) {
@@ -117,17 +131,4 @@ public class SaveToBookmarksDevAction extends AnAction {
         }
     }
 
-    /**
-     * Only make this action visible when text is selected.
-     *
-     *  The update method below is only called periodically so need
-     *  to be careful to check for selected text
-     *  https://jetbrains.org/intellij/sdk/docs/basics/action_system.html#overriding-the-anactionupdate-method
-     *
-     * @param e
-     */
-    @Override
-    public void update(AnActionEvent e) {
-        e.getPresentation().setEnabledAndVisible(isTextSelected(e));
-    }
 }
