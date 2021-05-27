@@ -1,21 +1,41 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
-    <name>Save to Bookmarks.dev</name>
-    <version>1.0.1</version>
-    <vendor email="ama@codepedia.org" url="https://www.bookmarks.dev">BookmarksDev</vendor>
+    <name>Codever Snippets</name>
+    <version>2.0.1</version>
+    <vendor email="ama@codepedia.org" url="https://www.codever.land">BookmarksDev</vendor>
 
     <description><![CDATA[
-      Supports saving code snippets on <a href="https://www.bookmarks.dev">www.bookmarks.dev</a> from IDE
 
-      <p>
-      <b>Select text</b>:<b>Right Click</b>:<b>Save to Bookmarks.dev</b> - you are taken to the website,
-       where most of the metadata for the codelet is auto-completed.
+      <p style="margin-bottom:10px">
+      Supports saving code snippets to <a href="https://www.codever.land">www.codever.land</a> from IDE
       </p>
 
-      <p>
-      See the <a href="https://www.bookmarks.dev/howto/codelets">HowTo/Codelets</a> page for more information
-      about managing your code snippets
-     </p>
+      <p style="margin-bottom:3px">
+      --------------------------
+      </p>
+      <p style="margin-bottom:3px">
+       <b>!!! Important !!!</b> - <b>Bookmarks.dev</b> has rebranded to <b>Codever</b>
+       to highlight increasing focus on code snippets management
+      </p>
+
+      <p style="margin-bottom:10px">
+      --------------------------
+      </p>
+
+      <p style="margin-bottom:10px">
+      <b>Select text</b> > <b>Right Click</b> > <b>Save to Codever</b> - you are taken to a website form,
+       where most of the metadata for the snippet is auto-completed. <i>Adjust as you consider and save</i>.
+      </p>
+
+
+      <p style="margin-bottom:10px">
+      See the <a href="https://www.codever.land/howto/snippets">HowTo/snippets</a> page for more information
+      about managing your code snippets.
+      </p>
+
+      <p style="margin-bottom:10px">
+      You can use Codever to also manage your dev bookmarks - see <a href="https://www.codever.land/howto/bookmarks">HowTo/bookmarks</a>
+      </p>
 
     ]]></description>
 
@@ -23,6 +43,7 @@
       <ul>
         <li>1.0.0 - Initial release</li>
         <li>1.0.1 - Modify cdata display to include paragraphs</li>
+        <li>2.0.0 - Migrate www.bookmarks.dev to www.codever.land</li>
       </ul>
     ]]>
     </change-notes>
@@ -41,19 +62,35 @@
     <actions>
         <action
                 id="BookmarsDev.Save.Editor"
-                class="dev.bookmarks.intellij.plugin.SaveToBookmarksDevAction"
-                text="Save to Bookmarks.dev"
-                description="Save code snippet to Bookmarks.dev"
-                icon="SaveToBookmarksDevPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+                class="codever.intellij.plugin.SaveToCodeverAction"
+                text="Save to Codever"
+                description="Save snippet to Codever"
+                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="BookmarsDev.Search.Editor"
+                class="codever.intellij.plugin.SearchOnCodeverDialog"
+                text="Search on Codever"
+                description="Launches dialog to input query search on Codever"
+                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
                 id="BookmarsDev.Save.Console"
-                class="dev.bookmarks.intellij.plugin.SaveToBookmarksDevAction"
-                text="Save to Bookmarks.dev"
-                description="Save code snippet to Bookmarks.dev"
-                icon="SaveToBookmarksDevPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+                class="codever.intellij.plugin.SaveToCodeverAction"
+                text="Save to Codever"
+                description="Save snippet to Codever"
+                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
+        </action>
+        <action
+                id="BookmarsDev.Search.Console"
+                class="codever.intellij.plugin.SearchOnCodeverDialog"
+                text="Search on Codever"
+                description="Launches dialog to input query search on Codever"
+                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 

@@ -2,3 +2,4 @@ out/
 .idea/
 *.iml
 bookmarks.dev-intellij-plugin.jar
+codever-intellij-plugin.jar

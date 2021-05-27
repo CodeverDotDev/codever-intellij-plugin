@@ -1,4 +1,4 @@
-package dev.bookmarks.intellij.plugin;
+package codever.intellij.plugin;
 
 import com.intellij.ide.BrowserUtil;
 import com.intellij.lang.Language;
@@ -14,7 +14,7 @@ import com.intellij.psi.PsiFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class SaveToBookmarksDevAction extends AnAction {
+public class SaveToCodeverAction extends AnAction {
 
     /**
      * Only make this action visible when text is selected.
@@ -67,19 +67,7 @@ public class SaveToBookmarksDevAction extends AnAction {
     }
 
     private String getTitle(AnActionEvent e) {
-        VirtualFile vFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
-        String fileName = vFile != null ? vFile.getName() : null;
-
-        final Project project = e.getData(PlatformDataKeys.PROJECT);
-        String projectName = project != null ? project.getName() : null;
-        StringBuilder sb = new StringBuilder();
-        if (projectName != null) {
-            sb.append(projectName);
-        }
-        if (fileName != null) {
-            sb.append(" - " + fileName);
-        }
-        return sb.length() > 0 ? sb.toString() : null;
+        return "Change me";
     }
 
     private String getComment(AnActionEvent e) {
@@ -105,7 +93,7 @@ public class SaveToBookmarksDevAction extends AnAction {
 
     private String getUrl(String languageTag, String sourceUrl, String title, String selectedCode, String comment) {
         try {
-            StringBuilder sb = new StringBuilder("https://www.bookmarks.dev/my-codelets/new?") ;
+            StringBuilder sb = new StringBuilder("https://www.codever.land/my-snippets/new?") ;
             sb.append("code=" + URLEncoder.encode(selectedCode, "UTF-8"));
             if (title != null) {
                 sb.append("&title=" + URLEncoder.encode(title, "UTF-8"));
