@@ -1,16 +1,28 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
     <name>Save to Bookmarks.dev</name>
-    <version>1.0.0</version>
-    <vendor email="ama@codepedia.org" url="https://www.codepedia.org">CodepediaOrg</vendor>
+    <version>1.0.1</version>
+    <vendor email="ama@codepedia.org" url="https://www.bookmarks.dev">BookmarksDev</vendor>
 
     <description><![CDATA[
-      Plugin to help saving code snippets on <a href="https://www.bookmarks.dev">www.bookmarks.dev</a>
+      Supports saving code snippets on <a href="https://www.bookmarks.dev">www.bookmarks.dev</a> from IDE
+
+      <p>
+      <b>Select text</b>:<b>Right Click</b>:<b>Save to Bookmarks.dev</b> - you are taken to the website,
+       where most of the metadata for the codelet is auto-completed.
+      </p>
+
+      <p>
+      See the <a href="https://www.bookmarks.dev/howto/codelets">HowTo/Codelets</a> page for more information
+      about managing your code snippets
+     </p>
+
     ]]></description>
 
     <change-notes><![CDATA[
       <ul>
         <li>1.0.0 - Initial release</li>
+        <li>1.0.1 - Modify cdata display to include paragraphs</li>
       </ul>
     ]]>
     </change-notes>

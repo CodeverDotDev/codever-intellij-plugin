@@ -6,7 +6,6 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
-import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -19,45 +18,42 @@ public class SaveToBookmarksDevAction extends AnAction {
 
     /**
      * Only make this action visible when text is selected.
-     *
-     *  The update method below is only called periodically so need
-     *  to be careful to check for selected text
-     *  https://jetbrains.org/intellij/sdk/docs/basics/action_system.html#overriding-the-anactionupdate-method
+     * <p>
+     * The update method below is only called periodically so need
+     * to be careful to check for selected text
+     * https://jetbrains.org/intellij/sdk/docs/basics/action_system.html#overriding-the-anactionupdate-method
      *
      * @param e
      */
     @Override
     public void update(AnActionEvent e) {
-        e.getPresentation().setEnabledAndVisible(isTextSelected(e));
+        // Get required data keys
+        final Project project = e.getProject();
+        final Editor editor = e.getData(CommonDataKeys.EDITOR);
+
+        // Set visibility only in case of existing project and editor and if a selection exists
+        e.getPresentation().setEnabledAndVisible(project != null
+                && editor != null
+                && editor.getSelectionModel().hasSelection());
     }
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        if (isTextSelected(e)) {
-            final String selectedCode = getSelectedCode(e);
-            final String languageTag  = getLanguageTag(e);
-            final String title = getTitle(e);
-            final String comment = getComment(e);
-            final String sourceUrl  = getSourceUrl(e);
+        final String selectedCode = getSelectedCode(e);
+        final String languageTag = getLanguageTag(e);
+        final String title = getTitle(e);
+        final String comment = getComment(e);
+        final String sourceUrl = getSourceUrl(e);
 
-            String url = getUrl(languageTag, sourceUrl, title, selectedCode, comment);
-            if(url != null) {
-                BrowserUtil.browse(url);
-            }
+        String url = getUrl(languageTag, sourceUrl, title, selectedCode, comment);
+        if (url != null) {
+            BrowserUtil.browse(url);
         }
-    }
-
-    private boolean isTextSelected(AnActionEvent e){
-        final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        CaretModel caretModel = editor.getCaretModel();
-        return caretModel.getCurrentCaret().hasSelection();
     }
 
     private String getSelectedCode(AnActionEvent e) {
         final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        CaretModel caretModel = editor.getCaretModel();
-
-        return caretModel.getCurrentCaret().getSelectedText();
+        return editor.getSelectionModel().getSelectedText();
     }
 
     private String getLanguageTag(AnActionEvent e) {
@@ -77,10 +73,10 @@ public class SaveToBookmarksDevAction extends AnAction {
         final Project project = e.getData(PlatformDataKeys.PROJECT);
         String projectName = project != null ? project.getName() : null;
         StringBuilder sb = new StringBuilder();
-        if(projectName != null) {
+        if (projectName != null) {
             sb.append(projectName);
         }
-        if(fileName != null) {
+        if (fileName != null) {
             sb.append(" - " + fileName);
         }
         return sb.length() > 0 ? sb.toString() : null;
@@ -93,11 +89,11 @@ public class SaveToBookmarksDevAction extends AnAction {
         final Project project = e.getData(PlatformDataKeys.PROJECT);
         String projectName = project != null ? project.getName() : null;
         StringBuilder sb = new StringBuilder();
-        if(projectName != null) {
-            sb.append("Project: " + projectName);
+        if (projectName != null) {
+            sb.append("**Project**: `" + projectName + "`" );
         }
-        if(fileName != null) {
-            sb.append(" - File: " + fileName);
+        if (fileName != null) {
+            sb.append(" - **File**:  `" + fileName + "`" );
         }
         return sb.length() > 0 ? sb.toString() : null;
     }
@@ -111,16 +107,16 @@ public class SaveToBookmarksDevAction extends AnAction {
         try {
             StringBuilder sb = new StringBuilder("https://www.bookmarks.dev/my-codelets/new?") ;
             sb.append("code=" + URLEncoder.encode(selectedCode, "UTF-8"));
-            if(title != null) {
+            if (title != null) {
                 sb.append("&title=" + URLEncoder.encode(title, "UTF-8"));
             }
-            if(comment != null) {
+            if (comment != null) {
                 sb.append("&comment=" + URLEncoder.encode(comment, "UTF-8"));
             }
-            if(sourceUrl != null){
+            if (sourceUrl != null) {
                 sb.append("&sourceUrl=" + URLEncoder.encode(sourceUrl, "UTF-8"));
             }
-            if(languageTag != null){
+            if (languageTag != null) {
                 sb.append("&tags=" + URLEncoder.encode(languageTag, "UTF-8"));
             }
 
