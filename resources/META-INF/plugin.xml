@@ -1,8 +1,8 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
     <name>Codever Snippets</name>
-    <version>2.0.1</version>
-    <vendor email="ama@codepedia.org" url="https://www.codever.land">BookmarksDev</vendor>
+    <version>2.0.3</version>
+    <vendor email="ama@codepedia.org" url="https://www.codever.land">codever</vendor>
 
     <description><![CDATA[
 
@@ -44,6 +44,7 @@
         <li>1.0.0 - Initial release</li>
         <li>1.0.1 - Modify cdata display to include paragraphs</li>
         <li>2.0.0 - Migrate www.bookmarks.dev to www.codever.land</li>
+        <li>2.0.3 - Change vendor to migrate to new organization</li>
       </ul>
     ]]>
     </change-notes>
