@@ -62,36 +62,36 @@
 
     <actions>
         <action
-                id="BookmarsDev.Save.Editor"
+                id="Codever.Save.Editor"
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
                 description="Save snippet to Codever"
-                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
-                id="BookmarsDev.Search.Editor"
+                id="Codever.Search.Editor"
                 class="codever.intellij.plugin.SearchOnCodeverDialog"
                 text="Search on Codever"
                 description="Launches dialog to input query search on Codever"
-                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
-                id="BookmarsDev.Save.Console"
+                id="Codever.Save.Console"
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
                 description="Save snippet to Codever"
-                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
+                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
         </action>
         <action
-                id="BookmarsDev.Search.Console"
+                id="Codever.Search.Console"
                 class="codever.intellij.plugin.SearchOnCodeverDialog"
                 text="Search on Codever"
                 description="Launches dialog to input query search on Codever"
-                icon="SaveToCodeverPluginIcons.SAVE_TO_BOOKMARKS_DEV_ACTION">
-            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
         </action>
     </actions>
 

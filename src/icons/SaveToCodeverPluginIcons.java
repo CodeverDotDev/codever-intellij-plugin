@@ -5,5 +5,5 @@ import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
 
 public interface SaveToCodeverPluginIcons {
-    Icon SAVE_TO_BOOKMARKS_DEV_ACTION = IconLoader.getIcon("/icons/icon.svg");
+    Icon CODEVER_ACTION_ICON = IconLoader.getIcon("/icons/icon.svg");
 }
