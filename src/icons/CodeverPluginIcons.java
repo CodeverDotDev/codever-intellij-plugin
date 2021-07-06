@@ -4,6 +4,7 @@ import com.intellij.openapi.util.IconLoader;
 
 import javax.swing.*;
 
-public interface SaveToCodeverPluginIcons {
+public interface CodeverPluginIcons {
     Icon CODEVER_ACTION_ICON = IconLoader.getIcon("/icons/icon.svg");
+    Icon CODEVER_ICON_48 = IconLoader.getIcon("/icons/icon48.svg");
 }

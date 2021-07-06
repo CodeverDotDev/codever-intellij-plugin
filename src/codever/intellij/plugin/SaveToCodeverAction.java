@@ -8,8 +8,12 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
+import icons.CodeverPluginIcons;
+import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -41,14 +45,22 @@ public class SaveToCodeverAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         final String selectedCode = getSelectedCode(e);
         final String languageTag = getLanguageTag(e);
-        final String title = getTitle(e);
         final String comment = getComment(e);
         final String sourceUrl = getSourceUrl(e);
 
-        String url = getUrl(languageTag, sourceUrl, title, selectedCode, comment);
-        if (url != null) {
-            BrowserUtil.browse(url);
+        final String title = Messages.showInputDialog("Snippet title", "Codever Save", CodeverPluginIcons.CODEVER_ICON_48, "Change me", null);
+        if (title != null) {
+            if (title.trim().equals("")) {
+                Messages.showErrorDialog("A title for code snippet is mandatory on Codever", "Title mandatory");
+                return;
+            }
+
+            String url = getUrl(languageTag, sourceUrl, title, selectedCode, comment);
+            if (url != null) {
+                BrowserUtil.browse(url);
+            }
         }
+
     }
 
     private String getSelectedCode(AnActionEvent e) {
@@ -66,10 +78,6 @@ public class SaveToCodeverAction extends AnAction {
         return languageTag;
     }
 
-    private String getTitle(AnActionEvent e) {
-        return "Change me";
-    }
-
     private String getComment(AnActionEvent e) {
         VirtualFile vFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         String fileName = vFile != null ? vFile.getName() : null;
@@ -78,10 +86,10 @@ public class SaveToCodeverAction extends AnAction {
         String projectName = project != null ? project.getName() : null;
         StringBuilder sb = new StringBuilder();
         if (projectName != null) {
-            sb.append("**Project**: `" + projectName + "`" );
+            sb.append("**Project**: `" + projectName + "`");
         }
         if (fileName != null) {
-            sb.append(" - **File**:  `" + fileName + "`" );
+            sb.append(" - **File**:  `" + fileName + "`");
         }
         return sb.length() > 0 ? sb.toString() : null;
     }
@@ -93,7 +101,7 @@ public class SaveToCodeverAction extends AnAction {
 
     private String getUrl(String languageTag, String sourceUrl, String title, String selectedCode, String comment) {
         try {
-            StringBuilder sb = new StringBuilder("https://www.codever.land/my-snippets/new?") ;
+            StringBuilder sb = new StringBuilder("https://www.codever.land/my-snippets/new?");
             sb.append("code=" + URLEncoder.encode(selectedCode, "UTF-8"));
             if (title != null) {
                 sb.append("&title=" + URLEncoder.encode(title, "UTF-8"));

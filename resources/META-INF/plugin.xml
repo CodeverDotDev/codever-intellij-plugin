@@ -1,36 +1,38 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
     <name>Codever Snippets</name>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <vendor email="ama@codepedia.org" url="https://www.codever.land">codever</vendor>
 
     <description><![CDATA[
 
       <p style="margin-bottom:10px">
-      Supports saving code snippets to <a href="https://www.codever.land">www.codever.land</a> from IDE
+      Save and search code snippets on <a href="https://www.codever.land">Codever</a> directly from your IDE.
+      You need to <b><a href="https://www.codever.land/register">register</a></b> an account first.
       </p>
 
-      <p style="margin-bottom:3px">
-      --------------------------
-      </p>
-      <p style="margin-bottom:3px">
-       <b>!!! Important !!!</b> - <b>Bookmarks.dev</b> has rebranded to <b>Codever</b>
-       to highlight increasing focus on code snippets management
-      </p>
-
+      <h3> Save snippet </h3>
       <p style="margin-bottom:10px">
-      --------------------------
+          <ol style="margin-bottom:5px">
+              <li><b>Select text</b> </li>
+              <li><b>Right Click</b> or <b>Ctrl+Shift+A</b> (<b>Cmd+Shift+A</b> on Mac) </li>
+              <li><b>Save to Codever</b></li>
+          </ol>
       </p>
 
+      <h3> Search snippet </h3>
       <p style="margin-bottom:10px">
-      <b>Select text</b> > <b>Right Click</b> > <b>Save to Codever</b> - you are taken to a website form,
-       where most of the metadata for the snippet is auto-completed. <i>Adjust as you consider and save</i>.
+        <ol>
+          <li><b>Right Click</b> or <b>Ctrl+Shift+A</b> (<b>Cmd+Shift+A</b> on Mac) </li>
+          <li><b>Search to Codever</b></li>
+        </ol>
       </p>
 
+      <hr/>
 
       <p style="margin-bottom:10px">
       See the <a href="https://www.codever.land/howto/snippets">HowTo/snippets</a> page for more information
-      about managing your code snippets.
+      about managing your code snippets and other available extensions.
       </p>
 
       <p style="margin-bottom:10px">
@@ -46,6 +48,7 @@
         <li>2.0.0 - Migrate www.bookmarks.dev to www.codever.land</li>
         <li>2.0.3 - Change vendor to migrate to new organization</li>
         <li>2.0.4 - Fix double entry in Editor menu</li>
+        <li>2.0.5 - Add title dialog directly in IDE</li>
       </ul>
     ]]>
     </change-notes>
@@ -67,7 +70,7 @@
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
                 description="Save snippet to Codever"
-                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
+                icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
@@ -75,7 +78,7 @@
                 class="codever.intellij.plugin.SearchOnCodeverDialog"
                 text="Search on Codever"
                 description="Launches dialog to input query search on Codever"
-                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
+                icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
         <action
@@ -83,7 +86,7 @@
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
                 description="Save snippet to Codever"
-                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
+                icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
         </action>
         <action
@@ -91,7 +94,7 @@
                 class="codever.intellij.plugin.SearchOnCodeverDialog"
                 text="Search on Codever"
                 description="Launches dialog to input query search on Codever"
-                icon="SaveToCodeverPluginIcons.CODEVER_ACTION_ICON">
+                icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
         </action>
     </actions>

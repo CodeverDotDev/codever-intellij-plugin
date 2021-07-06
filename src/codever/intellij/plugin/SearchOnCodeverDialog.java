@@ -8,6 +8,7 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import icons.CodeverPluginIcons;
 import org.jetbrains.annotations.NotNull;
 
 public class SearchOnCodeverDialog extends AnAction {
@@ -21,9 +22,9 @@ public class SearchOnCodeverDialog extends AnAction {
 
         String queryTxt;
         if (selectedText != null) {
-            queryTxt = Messages.showInputDialog("Input query to search in My Snippets", "Codever Search", Messages.getQuestionIcon(), selectedText, null);
+            queryTxt = Messages.showInputDialog("Input query to search in My Snippets", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48, selectedText, null);
         } else {
-            queryTxt = Messages.showInputDialog(project, "Input query to search in My Snippets", "Codever Search", Messages.getQuestionIcon());
+            queryTxt = Messages.showInputDialog(project, "Input query to search in My Snippets", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48);
         }
         String url = "https://www.codever.land/search?sd=my-snippets&q=" + queryTxt;
         if (queryTxt != null) {
