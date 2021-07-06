@@ -1,14 +1,14 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
     <name>Codever Snippets</name>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <vendor email="ama@codepedia.org" url="https://www.codever.land">codever</vendor>
 
     <description><![CDATA[
 
       <p style="margin-bottom:10px">
       Save and search code snippets on <a href="https://www.codever.land">Codever</a> directly from your IDE.
-      You need to <b><a href="https://www.codever.land/register">register</a></b> an account first.
+      You need to have an <b><a href="https://www.codever.land/register"> account registered</a></b> first.
       </p>
 
       <h3> Save snippet </h3>
@@ -28,14 +28,12 @@
         </ol>
       </p>
 
-      <hr/>
-
-      <p style="margin-bottom:10px">
+      <p style="margin-bottom:10px; margin-top:5px">
       See the <a href="https://www.codever.land/howto/snippets">HowTo/snippets</a> page for more information
       about managing your code snippets and other available extensions.
       </p>
 
-      <p style="margin-bottom:10px">
+      <p style="margin-bottom:10px; margin-top: 5px">
       You can use Codever to also manage your dev bookmarks - see <a href="https://www.codever.land/howto/bookmarks">HowTo/bookmarks</a>
       </p>
 
@@ -49,6 +47,7 @@
         <li>2.0.3 - Change vendor to migrate to new organization</li>
         <li>2.0.4 - Fix double entry in Editor menu</li>
         <li>2.0.5 - Add title dialog directly in IDE</li>
+        li> 2.0.6 - docs: minor update in description in plugin.xml</li>
       </ul>
     ]]>
     </change-notes>
