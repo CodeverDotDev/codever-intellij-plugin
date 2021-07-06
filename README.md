@@ -1,17 +1,20 @@
 Codever Snippets - Intellij Plugin
 ---
 
-Save ans search snippets from IntelliJ IDEs on [Codever](https://www.codever.land) easily: 
+Save ans search snippets from IntelliJ IDEs on [Codever](https://www.codever.land) easily.
+
+> [Register](https://www.codever.land/register) an account first and follow the [howto](https://www.codever.land/howto) guides
+> to help you get started
 
 ### Save snippet
 
-> **Select code snippet** > **Mouse Right Click** > **Save to Codever**
+ **Select code snippet** > **right click** or **Ctrl+Shift+A** (**Cmd+Shift+A** on Mac) > **Save to Codever** :
  
 ![plugin-usage-showcase](documentation/img/plugin-showcase-save-800x456.gif)
 
 ### Search snippets
 
-**Mouse Right Click** > **Save to Codever**
+**Right click** or **Ctrl+Shift+P** (**Cmd+Shift+P** on Mac) > **Search on Codever**:
 
 > You can select text in editor, which will be used as **initial value** in input dialog
 
