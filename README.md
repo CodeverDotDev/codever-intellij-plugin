@@ -1,9 +1,9 @@
 Codever Snippets - Intellij Plugin
 ---
 
-Save ans search snippets from IntelliJ IDEs on [Codever](https://www.codever.land) easily.
+Save ans search snippets from IntelliJ IDEs on [Codever](https://www.codever.dev) easily.
 
-> [Register](https://www.codever.land/register) an account first and follow the [howto](https://www.codever.land/howto) guides
+> [Register](https://www.codever.dev/register) an account first and follow the [howto](https://www.codever.dev/howto) guides
 > to help you get started
 
 ### Save snippet

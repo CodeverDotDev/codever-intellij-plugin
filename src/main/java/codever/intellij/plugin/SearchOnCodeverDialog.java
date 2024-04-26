@@ -26,7 +26,7 @@ public class SearchOnCodeverDialog extends AnAction {
         } else {
             queryTxt = Messages.showInputDialog(project, "Input query to search in My Snippets", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48);
         }
-        String url = "https://www.codever.land/search?sd=my-snippets&q=" + queryTxt;
+        String url = "https://www.codever.dev/search?sd=my-snippets&q=" + queryTxt;
         if (queryTxt != null) {
             BrowserUtil.browse(url);
         }

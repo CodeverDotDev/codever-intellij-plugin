@@ -12,8 +12,6 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import icons.CodeverPluginIcons;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -45,8 +43,10 @@ public class SaveToCodeverAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         final String selectedCode = getSelectedCode(e);
         final String languageTag = getLanguageTag(e);
+        final String filename = getFilename(e);
+        final String projectName = getProjectName(e);
         final String comment = getComment(e);
-        final String sourceUrl = getSourceUrl(e);
+        final String location = getLocation(e);
 
         final String title = Messages.showInputDialog("Snippet title", "Codever Save", CodeverPluginIcons.CODEVER_ICON_48, "Change me", null);
         if (title != null) {
@@ -55,7 +55,7 @@ public class SaveToCodeverAction extends AnAction {
                 return;
             }
 
-            String url = getUrl(languageTag, sourceUrl, title, selectedCode, comment);
+            String url = getUrl(languageTag, location, title, selectedCode, comment, filename, projectName);
             if (url != null) {
                 BrowserUtil.browse(url);
             }
@@ -78,12 +78,23 @@ public class SaveToCodeverAction extends AnAction {
         return languageTag;
     }
 
-    private String getComment(AnActionEvent e) {
+    private String getFilename(AnActionEvent e) {
         VirtualFile vFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         String fileName = vFile != null ? vFile.getName() : null;
 
+        return fileName;
+    }
+
+    private String getProjectName(AnActionEvent e) {
         final Project project = e.getData(PlatformDataKeys.PROJECT);
         String projectName = project != null ? project.getName() : null;
+
+        return projectName;
+    }
+
+    private String getComment(AnActionEvent e) {
+        String projectName = getProjectName(e);
+        String fileName = getFilename(e);
         StringBuilder sb = new StringBuilder();
         if (projectName != null) {
             sb.append("**Project**: `" + projectName + "`");
@@ -94,14 +105,15 @@ public class SaveToCodeverAction extends AnAction {
         return sb.length() > 0 ? sb.toString() : null;
     }
 
-    private String getSourceUrl(AnActionEvent e) {
+    private String getLocation(AnActionEvent e) {
         VirtualFile vFile = e.getData(PlatformDataKeys.VIRTUAL_FILE);
         return vFile != null ? vFile.getUrl() : null;
     }
 
-    private String getUrl(String languageTag, String sourceUrl, String title, String selectedCode, String comment) {
+    private String getUrl(String languageTag, String sourceUrl, String title, String selectedCode, String comment,
+                          String filename, String projectName) {
         try {
-            StringBuilder sb = new StringBuilder("https://www.codever.land/my-snippets/new?");
+            StringBuilder sb = new StringBuilder("https://www.codever.dev/my-snippets/new?");
             sb.append("code=" + URLEncoder.encode(selectedCode, "UTF-8"));
             if (title != null) {
                 sb.append("&title=" + URLEncoder.encode(title, "UTF-8"));
@@ -110,11 +122,18 @@ public class SaveToCodeverAction extends AnAction {
                 sb.append("&comment=" + URLEncoder.encode(comment, "UTF-8"));
             }
             if (sourceUrl != null) {
-                sb.append("&sourceUrl=" + URLEncoder.encode(sourceUrl, "UTF-8"));
+                sb.append("&location=" + URLEncoder.encode(sourceUrl, "UTF-8"));
             }
             if (languageTag != null) {
                 sb.append("&tags=" + URLEncoder.encode(languageTag, "UTF-8"));
             }
+            if (filename != null) {
+                sb.append("&file=" + URLEncoder.encode(filename, "UTF-8"));
+            }
+            if (projectName != null) {
+                sb.append("&project=" + URLEncoder.encode(projectName, "UTF-8"));
+            }
+            sb.append("&initiator=intellij-plugin");
 
             return sb.toString();
         } catch (UnsupportedEncodingException unsupportedEncodingException) {

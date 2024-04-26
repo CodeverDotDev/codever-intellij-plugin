@@ -3,3 +3,5 @@ out/
 *.iml
 bookmarks.dev-intellij-plugin.jar
 codever-intellij-plugin.jar
+/build/
+/.gradle/
