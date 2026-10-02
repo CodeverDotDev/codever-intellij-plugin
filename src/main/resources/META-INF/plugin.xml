@@ -1,17 +1,17 @@
 <idea-plugin>
     <id>dev.bookmarks.intellij.plugin</id>
     <name>Codever</name>
-    <version>3.0.0</version>
+    <version>4.0.0</version>
     <vendor email="ama@codepedia.org" url="https://www.codever.dev">codever</vendor>
 
     <description><![CDATA[
 
       <p style="margin-bottom:10px">
-      Save and search code snippets on <a href="https://www.codever.dev">Codever</a> directly from your IDE.
+      Save and search Markdown notes on <a href="https://www.codever.dev">Codever</a> directly from your IDE.
       You need to have an <b><a href="https://www.codever.dev/register"> account registered</a></b> first.
       </p>
 
-      <h3> Save snippet </h3>
+      <h3> Save note </h3>
       <p style="margin-bottom:10px">
           <ol style="margin-bottom:5px">
               <li><b>Select text</b> </li>
@@ -20,7 +20,7 @@
           </ol>
       </p>
 
-      <h3> Search snippet </h3>
+      <h3> Search notes </h3>
       <p style="margin-bottom:10px">
         <ol>
           <li><b>Right Click</b> or <b>Ctrl+Shift+A</b> (<b>Cmd+Shift+A</b> on Mac) </li>
@@ -29,8 +29,8 @@
       </p>
 
       <p style="margin-bottom:10px; margin-top:5px">
-      See the <a href="https://www.codever.dev/howto/snippets">HowTo/snippets</a> page for more information
-      about managing your code snippets and other available extensions.
+      See the <a href="https://www.codever.dev/howto/notes">HowTo/notes</a> page for more information
+      about managing your notes and other available extensions.
       </p>
 
       <p style="margin-bottom:10px; margin-top: 5px">
@@ -49,16 +49,18 @@
         <li>2.0.5 - Add title dialog directly in IDE</li>
         <li> 2.0.6 - docs: minor update in description in plugin.xml</li>
         <li> 3.0.0 - replace links to www.codever.dev and move to gradle plugin devkit</li>
+        <li> 4.0.0 - update IntelliJ compatibility and migrate snippets to notes</li>
       </ul>
     ]]>
     </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="252"/>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends optional="true" config-file="codever-jupyter.xml">intellij.jupyter</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
@@ -69,7 +71,7 @@
                 id="Codever.Save.Editor"
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
-                description="Save snippet to Codever"
+                description="Save note to Codever"
                 icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
@@ -85,7 +87,7 @@
                 id="Codever.Save.Console"
                 class="codever.intellij.plugin.SaveToCodeverAction"
                 text="Save to Codever"
-                description="Save snippet to Codever"
+                description="Save note to Codever"
                 icon="CodeverPluginIcons.CODEVER_ACTION_ICON">
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="last"/>
         </action>

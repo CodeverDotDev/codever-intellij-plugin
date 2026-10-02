@@ -11,7 +11,17 @@ import com.intellij.openapi.ui.Messages;
 import icons.CodeverPluginIcons;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class SearchOnCodeverDialog extends AnAction {
+
+    @Override
+    public void update(@NotNull AnActionEvent event) {
+        Project project = event.getProject();
+        Editor editor = event.getData(CommonDataKeys.EDITOR);
+        event.getPresentation().setEnabledAndVisible(project != null && editor != null);
+    }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
@@ -22,13 +32,18 @@ public class SearchOnCodeverDialog extends AnAction {
 
         String queryTxt;
         if (selectedText != null) {
-            queryTxt = Messages.showInputDialog("Input query to search in My Snippets", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48, selectedText, null);
+            queryTxt = Messages.showInputDialog("Input query to search in My Notes", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48, selectedText, null);
         } else {
-            queryTxt = Messages.showInputDialog(project, "Input query to search in My Snippets", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48);
+            queryTxt = Messages.showInputDialog(project, "Input query to search in My Notes", "Codever Search", CodeverPluginIcons.CODEVER_ICON_48);
         }
-        String url = "https://www.codever.dev/search?sd=my-snippets&q=" + queryTxt;
         if (queryTxt != null) {
-            BrowserUtil.browse(url);
+            try {
+                String url = "https://www.codever.dev/search?sd=my-notes&q="
+                        + URLEncoder.encode(queryTxt, "UTF-8");
+                BrowserUtil.browse(url);
+            } catch (UnsupportedEncodingException unsupportedEncodingException) {
+                Messages.showErrorDialog("Could not encode the search query", "Codever Search");
+            }
         }
 
     }

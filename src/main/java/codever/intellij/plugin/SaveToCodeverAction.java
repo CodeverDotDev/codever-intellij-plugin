@@ -30,12 +30,10 @@ public class SaveToCodeverAction extends AnAction {
     @Override
     public void update(AnActionEvent e) {
         // Get required data keys
-        final Project project = e.getProject();
         final Editor editor = e.getData(CommonDataKeys.EDITOR);
 
-        // Set visibility only in case of existing project and editor and if a selection exists
-        e.getPresentation().setEnabledAndVisible(project != null
-                && editor != null
+        // Set visibility only in an editor when a selection exists
+        e.getPresentation().setEnabledAndVisible(editor != null
                 && editor.getSelectionModel().hasSelection());
     }
 
@@ -48,10 +46,10 @@ public class SaveToCodeverAction extends AnAction {
         final String comment = getComment(e);
         final String location = getLocation(e);
 
-        final String title = Messages.showInputDialog("Snippet title", "Codever Save", CodeverPluginIcons.CODEVER_ICON_48, "Change me", null);
+        final String title = Messages.showInputDialog("Note title", "Codever Save", CodeverPluginIcons.CODEVER_ICON_48, "Change me", null);
         if (title != null) {
             if (title.trim().equals("")) {
-                Messages.showErrorDialog("A title for code snippet is mandatory on Codever", "Title mandatory");
+                Messages.showErrorDialog("A title for the note is mandatory on Codever", "Title mandatory");
                 return;
             }
 
@@ -113,7 +111,7 @@ public class SaveToCodeverAction extends AnAction {
     private String getUrl(String languageTag, String sourceUrl, String title, String selectedCode, String comment,
                           String filename, String projectName) {
         try {
-            StringBuilder sb = new StringBuilder("https://www.codever.dev/my-snippets/new?");
+            StringBuilder sb = new StringBuilder("https://www.codever.dev/my-notes/new?");
             sb.append("code=" + URLEncoder.encode(selectedCode, "UTF-8"));
             if (title != null) {
                 sb.append("&title=" + URLEncoder.encode(title, "UTF-8"));
