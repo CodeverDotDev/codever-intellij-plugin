@@ -1,0 +1,11 @@
+<idea-plugin>
+    <actions>
+        <!-- Jupyter cell editors replace the standard EditorPopupMenu. -->
+        <reference ref="Codever.Save.Editor">
+            <add-to-group group-id="JupyterEditorPopupActions" anchor="last"/>
+        </reference>
+        <reference ref="Codever.Search.Editor">
+            <add-to-group group-id="JupyterEditorPopupActions" anchor="last"/>
+        </reference>
+    </actions>
+</idea-plugin>
